@@ -4,7 +4,7 @@ import time
 
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, filename, x, y, a):
+    def __init__(self, filename, x, y, a=0):
         super().__init__()
         self.x = x
         self.y = y
@@ -25,103 +25,101 @@ class Player(pygame.sprite.Sprite):
 #pygame.init()
 
 def Start():
-    pygame.init()
-    timer = pygame.time.Clock()
-    w = pygame.display.set_mode((910, 512))
-    background = pygame.image.load('menu_window.jpg')
-    background_rect = background.get_rect()
-    p1 = Player("start.png", 455, 256)
-    p1_cp = p1.image
-    p1_r = p1_cp.get_rect(center = (p1.x, p1.y))
-    print(p1_r)
-    while True:
-        for e in pygame.event.get():
-            if e.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            elif e.type == pygame.MOUSEBUTTONDOWN:
-                if e.button == 1:
-		    x, y = pygame.mouse.get_pos() 
-		    if x > 386 and x < 541 and y > 189 and y < 323:
-                        pygame.quit()
-			#runpy.run_module('start_33.py')
-                        #os.system('start_3.py')
-			#sys.exit()
-			Play()
+        pygame.init()
+        timer = pygame.time.Clock()
+        w = pygame.display.set_mode((910, 512))
+        background = pygame.image.load('menu_window.jpg')
+        background_rect = background.get_rect()
+        p1 = Player("start.png", 455, 256)
+        p1_cp = p1.image
+        p1_r = p1_cp.get_rect(center = (p1.x, p1.y))
+        while True:
+            for e in pygame.event.get():
+                if e.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+                elif e.type == pygame.MOUSEBUTTONDOWN:
+                    if e.button == 1:
+                        x, y = pygame.mouse.get_pos() 
+                        if x > 386 and x < 541 and y > 189 and y < 323:
+                            pygame.quit()
+			    #runpy.run_module('start_33.py')
+                            #os.system('start_3.py')
+			    #sys.exit()
+                            Play()
 
-        w.blit(background, background_rect)
-        w.blit(p1.image, p1_r)                    
-        pygame.display.update()
+            w.blit(background, background_rect)
+            w.blit(p1.image, p1_r)                    
+            pygame.display.update()
 
 
 def Play():
-        #pygame.init()
-        #w = (pygame.display.set_mode((910, 512)), pygame.RESIZABLE)
-        w = pygame.display.set_mode((910, 512))
+    pygame.init()
+    #w = (pygame.display.set_mode((910, 512)), pygame.RESIZABLE)
+    w = pygame.display.set_mode((910, 512))
+    
+
+    background = pygame.image.load('grass.jpg')
+    background_rect = background.get_rect()
+    p1 = Player("tank_11.png", 50, 40, 0)
+    p2 = Player("tank_21.png", 850, 450, 0)
+    b1 = Player("bullet_11.png", -100, -100, 0)
+    b1_cp = b1.image
+    b2 = Player("bullet_22.png", -100, -100, 0)
+    b2_cp = b2.image
+    
+
+    sides = []
+    sides.append(Player("side_11.png", 404, 200, 0))
+    sides.append(Player("side_12.png", 404, 262, 0))
+    sides.append(Player("side_14.png", 351, 232, 0))
+    sides.append(Player("side_14.png", 289, 232, 0))
+    sides.append(Player("side_14.png", 800, 242, 0))
+    sides.append(Player("side_13.png", 250, 70, 0))
+    sides.append(Player("side_15.png", 522, 22, 0))
+    sides.append(Player("side_14.png", 478, 433, 0))
+    sides.append(Player("side_14.png", 540, 433, 0))
+    sides.append(Player("side_13.png", 755, 481, 0))
+    sides.append(Player("side_15.png", 458, 22, 0))
+    sides.append(Player("side_14.png", 702, 490, 0))
+    sides.append(Player("side_14b.png", 32, 250, 0))
+    sides.append(Player("side_16.png", 685, 110, 0))
+    sides.append(Player("side_17.png", 230, 390, 0))
+    sides.append(Player("side_17.png", 590, 250, 0))
+    sides.append(Player("side_16.png", 560, 297, 0))
+    sides.append(Player("side_18.png", 52, 491, 0))
+    
+    
+    exb1 = Player("ex_p2.png", -100, -100, 0) 
+    exb1_cp = exb1.image
+    exb1_r = exb1_cp.get_rect(center = (-100, -100))
+    exb2 = Player("ex_p2.png", -100, -100, 0) 
+    exb2_cp = exb1.image
+    exb2_r = exb1_cp.get_rect(center = (-100, -100))
+    
+
+    ex1 = Player("ex.png", -100, -100, 0)
+    ex1_cp = ex1.image
+    ex2 = Player("ex.png", -100, -100, 0)
+    ex2_cp = ex2.image
 
 
-        background = pygame.image.load('grass.jpg')
-        background_rect = background.get_rect()
-        p1 = Player("tank_11.png", 50, 40, 0)
-        p2 = Player("tank_21.png", 850, 450, 0)
-        b1 = Player("bullet_11.png", -100, -100, 0)
-        b1_cp = b1.image
-        b2 = Player("bullet_22.png", -100, -100, 0)
-        b2_cp = b2.image
+    stop = Player("stopp.png", 400, 30, 0)
+    stop_cp = stop.image
+    stop_r = stop_cp.get_rect(center = (53, 492))
+    
 
-
-        sides = []
-        sides.append(Player("side_11.png", 404, 200, 0))
-        sides.append(Player("side_12.png", 404, 262, 0))
-        sides.append(Player("side_14.png", 351, 232, 0))
-        sides.append(Player("side_14.png", 289, 232, 0))
-        sides.append(Player("side_14.png", 800, 242, 0))
-	sides.append(Player("side_13.png", 250, 70, 0))
-        sides.append(Player("side_15.png", 522, 22, 0))
-        sides.append(Player("side_14.png", 478, 433, 0))
-        sides.append(Player("side_14.png", 540, 433, 0))
-        sides.append(Player("side_13.png", 755, 481, 0))
-        sides.append(Player("side_15.png", 458, 22, 0))
-        sides.append(Player("side_14.png", 702, 490, 0))
-        sides.append(Player("side_14b.png", 32, 250, 0))
-        sides.append(Player("side_16.png", 685, 110, 0))
-        sides.append(Player("side_17.png", 230, 390, 0))
-        sides.append(Player("side_17.png", 590, 250, 0))
-        sides.append(Player("side_16.png", 560, 297, 0))
-        sides.append(Player("side_18.png", 52, 491, 0))
-
-
-        exb1 = Player("ex_p2.png", -100, -100, 0) 
-        exb1_cp = exb1.image
-        exb1_r = exb1_cp.get_rect(center = (-100, -100))
-        exb2 = Player("ex_p2.png", -100, -100, 0) 
-        exb2_cp = exb1.image
-        exb2_r = exb1_cp.get_rect(center = (-100, -100))
-
-
-        ex1 = Player("ex.png", -100, -100, 0)
-        ex1_cp = ex1.image
-        ex2 = Player("ex.png", -100, -100, 0)
-        ex2_cp = ex2.image
-
-
-	stop = Player("stopp.png", 400, 30, 0)
-        stop_cp = stop.image
-        stop_r = stop_cp.get_rect(center = (53, 492))
-
-
-        menu = Player("menuu.png", 400, 30, 0)
-	menu_cp = menu.image
-        menu_r = menu_cp.get_rect(center = (32, 251))
+    menu = Player("menuu.png", 400, 30, 0)
+    menu_cp = menu.image
+    menu_r = menu_cp.get_rect(center = (32, 251))
  
 
-        win_1 = Player("blue_win1.jpg", 400, 30, 0)
-        win_2 = Player("red_win1.jpg", 400, 30, 0)
-        win_1_cp = win_1.image
-        win_1_r = win_1_cp.get_rect(center = (455, 256))
-        win_2_cp = win_2.image
-        win_2_r = win_2_cp.get_rect(center = (455, 256))
-
+    win_1 = Player("blue_win1.jpg", 400, 30, 0)
+    win_2 = Player("red_win1.jpg", 400, 30, 0)
+    win_1_cp = win_1.image
+    win_1_r = win_1_cp.get_rect(center = (455, 256))
+    win_2_cp = win_2.image
+    win_2_r = win_2_cp.get_rect(center = (455, 256))
 
 
     timer = pygame.time.Clock()
@@ -160,7 +158,7 @@ def Play():
                         pygame.quit()
                         #runpy.run_module('start_4.py')
                         #sys.exit()
-                Start()
+                        Start()
             elif e.type == pygame.KEYUP:
                 if e.key == pygame.K_UP:
                     p1.rot = True
@@ -188,7 +186,7 @@ def Play():
                         #runpy.run_module('start_4.py')
                         #os.system('start_3.py')
                         #sys.exit()  
-                Start()
+                        Start()
                 elif e.button == 1 and not p1.run and not p2.run:
                     stop = Player("stopp.png", 400, 30, 0)
                     stop_cp = stop.image
@@ -202,7 +200,7 @@ def Play():
                         #runpy.run_module('start_4.py')
                         #os.system('start_3.py')
                         #sys.exit() 
-                Start()
+                        Start()
     
         exb1.x = -100
         exb1.y = -100
